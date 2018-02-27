@@ -10,76 +10,24 @@
   <link rel="stylesheet" href="styles/style.css">
   <script src="scripts/client.js"></script>
 </head>
-  <body class="container">
-    <h1>The Angular Life</h1>
-    <main ng-controller="PicController as vm">
+  <body class="background">
+    <div class="row" ng-controller="PicController as vm">
+      <h1 class="h1">{{vm.title}}</h1>
       <div class="row">
-        <section class="col-md-4">
-          <section class="picture-container">
-            <img ng-hide="hideText" src="./images/Stupid_Hair.jpg" ng-click="hideText=!hideText">
-            <div ng-hide="!hideText" ng-click="hideText=!hideText" class="picture-container">As new members of the MSUM Weinercats, the rookies all got haircuts. Since I had the longest hair, I got the mohawk.</div>
-          </section>
-          <section>
-            <button type="button" ng-click="like=like+1"><span class="glyphicon glyphicon-thumbs-up"></span> {{like}}</button>
-            <!-- <button ng-click="vm.dislikeClick()">Dislike</button>
-            <button ng-click="vm.commentClick()">Comment</button> -->
-          </section>
-        </section>
-        <section class="col-md-4">
-          <section class="picture-container">
-            <img ng-hide="hideText1" src="./images/Rugby_Dress.jpg" ng-click="hideText1=!hideText1">
-            <div ng-hide="!hideText1" ng-click="hideText1=!hideText1" class="picture-container">Promdress Rugby! Tournament hosted by the women's teams in the area, and the men get dressed up and play during the breaks. Our resident ref Randy wore a suit and bow tie.</div>
-          </section>
-          <section>
-            <button type="button" ng-click="like1=like1+1"><span class="glyphicon glyphicon-thumbs-up"></span> {{like1}}</button>
-            <!-- <button ng-click="vm.dislikeClick()">Dislike</button>
-            <button ng-click="vm.commentClick()">Comment</button> -->
-          </section>
-        </section>
-        <section class="col-md-4">
-          <section class="picture-container">
-            <img ng-hide="hideText2" src="./images/Water_for_Castro.jpg" ng-click="hideText2=!hideText2">
-            <div ng-hide="!hideText2" ng-click="hideText2=!hideText2" class="picture-container">I participated in a model united nations class for a few semesters, one of which I represented Cuba in the economic and finance comittee. I basically got America voted out of the committee with the slogan "Water for Castro".</div>
-          </section>
-          <section>
-            <button type="button" ng-click="like2=like2+1"><span class="glyphicon glyphicon-thumbs-up"></span> {{like2}}</button>
-            <!-- <button ng-click="vm.dislikeClick()">Dislike</button>
-            <button ng-click="vm.commentClick()">Comment</button> -->
-          </section>
-        </section>
-        <section class="col-md-4">
-            <section class="picture-container">
-              <img ng-hide="hideText3" src="./images/MSUM_Grad.jpg" ng-click="hideText3=!hideText3">
-              <div ng-hide="!hideText3" ng-click="hideText3=!hideText3" class="picture-container">Graduation with my best friend. He's home in Bangladesh now, but I know I'll see him again. We still talk regularly on the various messengers.</div>
-            </section>
-            <section>
-              <button type="button" ng-click="like3=like3+1"><span class="glyphicon glyphicon-thumbs-up"></span> {{like3}}</button>
-              <!-- <button ng-click="vm.dislikeClick()">Dislike</button>
-              <button ng-click="vm.commentClick()">Comment</button> -->
-            </section>
-          </section>
-          <section class="col-md-4">
-            <section class="picture-container">
-              <img ng-hide="hideText4" src="./images/Dinner_Friends.jpg" ng-click="hideText4=!hideText4">
-              <div ng-hide="!hideText4" ng-click="hideText4=!hideText4" class="picture-container">I spent all of my Officer Leader Course with this group. Cold rain, mud, snow, and many miles under the stars. This was our small graduation celebration before we all went our separate ways.</div>
-            </section>
-            <section>
-              <button type="button" ng-click="like4=like4+1"><span class="glyphicon glyphicon-thumbs-up"></span> {{like4}}</button>
-              <!-- <button ng-click="vm.dislikeClick()">Dislike</button>
-              <button ng-click="vm.commentClick()">Comment</button> -->
-            </section>
-          </section>
-          <section class="col-md-4">
-            <section class="picture-container">
-              <img ng-hide="hideText5" src="./images/Gacrux_Class.jpg" ng-click="hideText5=!hideText5">
-              <div ng-hide="!hideText5" ng-click="hideText5=!hideText5" class="picture-container">A new group of heroes, a new chapter in life. This is where my best friend recommended I go, and go I did.</div>
-            </section>
-            <section>
-              <button type="button" ng-click="like5=like5+1"><span class="glyphicon glyphicon-thumbs-up"></span> {{like5}}</button>
-              <!-- <button ng-click="vm.dislikeClick()">Dislike</button>
-              <button ng-click="vm.commentClick()">Comment</button> -->
-            </section>
+        <div ng-repeat="group in vm.groupingArray">
+          <div class="clearfix" ng-if="$index % 3 == 0"></div>
+          <div class="col-sm-4">
+            <div class="thumbnail">
+              <img ng-hide="text" ng-click="text=!text" class="imgClick" ng-src="{{group.photo}}">
+              <div ng-hide="!text" ng-click="text=!text" class="thumbTextBox">{{group.imageText}}</div>
+              <h2 class="name">{{group.name}}</h2>
+              <div class="rating">
+                <p class="likes" ng-click="plusOne($index)">+ {{group.likes}} </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </main>
+    </div>
   </body>
 </html>
